@@ -5,11 +5,6 @@ tools a page registers and lets you drive them from a Gemini-powered chat in the
 panel. Point it at any WebMCP-enabled site; it reads whatever tools that page exposes —
 nothing here is hard-coded to one site.
 
-> **Staging note:** this lives under `webmcp-agent/` inside the sirocco-gallery repo
-> only as a temporary home. It is self-contained and is meant to be lifted into its own
-> repository (`git mv webmcp-agent/* …`) — no sirocco code is imported, and sirocco
-> imports nothing from it.
-
 ## How it works
 
 ```
