@@ -1,0 +1,33 @@
+{
+  "manifest_version": 3,
+  "name": "Refraktor",
+  "version": "1.0.0",
+  "description": "An autonomous agent that discovers and invokes a website's WebMCP tools to complete tasks on your behalf.",
+  "minimum_chrome_version": "146",
+  "permissions": [
+    "sidePanel",
+    "storage",
+    "activeTab",
+    "scripting"
+  ],
+  "optional_host_permissions": ["<all_urls>"],
+  "action": {
+    "default_icon": {
+      "16": "icons/icon-16.png",
+      "48": "icons/icon-48.png",
+      "128": "icons/icon-128.png"
+    },
+    "default_title": "Refraktor"
+  },
+  "icons": {
+    "16": "icons/icon-16.png",
+    "48": "icons/icon-48.png",
+    "128": "icons/icon-128.png"
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "side_panel": {
+    "default_path": "sidepanel.html"
+  }
+}

@@ -1,12 +1,17 @@
-# WebMCP Agent
+# Refraktor
 
-A general-purpose Chrome extension that discovers the [WebMCP](https://github.com/webmachinelearning/webmcp)
+Refraktor is a general-purpose Chrome extension that discovers the [WebMCP](https://github.com/webmachinelearning/webmcp)
 tools a page registers and lets you drive them from a Gemini-powered chat in the side
 panel. Point it at any WebMCP-enabled site; it reads whatever tools that page exposes —
-nothing here is hard-coded to one site. Built as the consumer half of the
-[sirocco.gallery](https://sirocco.gallery) WebMCP reference implementation.
+nothing here is hard-coded to one site.
 
-See live demo here: [sirocco WebMCP provider and consumer loop](https://youtu.be/0D4jC-KZzNs)
+> **Source of truth — develop here.** This copy under `webmcp-agent/` in the private
+> `ugly-tool/sirocco-gallery` dev repo is the **development source of truth**; all
+> extension work (including v2) happens here. The public repo
+> **[`github.com/sirocco-gallery/webmcp-agent`](https://github.com/sirocco-gallery/webmcp-agent)**
+> is a **distribution mirror** — released builds are uploaded there manually from this
+> repo; no changes are made directly in the public repo. It is self-contained — no
+> sirocco code is imported, and sirocco imports nothing from it.
 
 ## How it works
 
@@ -27,6 +32,15 @@ page (MAIN world)        extension
   `{ content: [{ type: "text", text }] }`.
 - **content.js** is the isolated-world relay (it has `chrome.*`; the bridge doesn't).
 - **background.js** is the message hub: per-tab tool cache, badge count, panel routing.
+  It also **injects** `content.js` + `bridge.js` on demand — only into the tab whose
+  toolbar icon you click (which grants `activeTab` for that tab). There are no static
+  content scripts and no `<all_urls>` host permission by default; the extension can only
+  reach a page you explicitly point it at.
+- **Automatic scanning (opt-in).** The panel offers a *"Scan pages automatically"*
+  control. It requests the **optional** `<all_urls>` host permission at runtime (no
+  install-time warning); once granted, the SW registers dynamic content scripts on every
+  page so tools appear automatically — the original always-on behaviour, now user-granted
+  and revocable from the same toggle.
 - **sidepanel.js** runs the autonomous loop (max 8 tool calls/turn) against Gemini:
   it keeps conversation history across messages (so follow-ups have context),
   reconciles model-invented argument keys against each tool's schema (e.g. `css`→`code`),
@@ -38,13 +52,15 @@ page (MAIN world)        extension
    - `chrome://flags/#enable-experimental-web-platform-features` → exposes the
      production `document.modelContext` imperative API, **or**
    - `chrome://flags/#enable-webmcp-testing` → exposes `navigator.modelContextTesting`.
-2. `chrome://extensions` → enable **Developer mode** → **Load unpacked** → select the
-   folder you downloaded (the one with `manifest.json` at its root).
-3. Click the toolbar icon to open the side panel. Paste a **Gemini API key** (stored
-   locally via `chrome.storage`, never sent anywhere but Google). Pick a model in the
-   footer dropdown — **2.5 Pro** (default, reliable on multi-argument / special-character
-   calls) or **2.5 Flash** (faster). The **⧉** button copies the full transcript
-   (calls, args, results) for debugging.
+2. `chrome://extensions` → enable **Developer mode** → **Load unpacked** → pick this
+   `webmcp-agent/` folder.
+3. Click the toolbar icon to open the side panel. **Clicking the icon also scans the
+   current page** — it injects the WebMCP bridge into that tab only. After a full-page
+   navigation, click the icon again to re-scan (the per-tab access ends on navigation).
+   Paste a **Gemini API key** (stored locally via `chrome.storage`, never sent anywhere
+   but Google). Pick a model in the footer dropdown — **2.5 Pro** (default, reliable on
+   multi-argument / special-character calls) or **2.5 Flash** (faster). The **⧉** button
+   copies the full transcript (calls, args, results) for debugging.
 
 ## Try it (against sirocco.gallery)
 
@@ -60,7 +76,7 @@ The agent chains calls on its own and summarizes the result.
 ## Regenerate icons
 
 ```bash
-python3 make_icons.py
+python3 icons/make_icons.py
 ```
 
 ## Constraints (v0.1)
@@ -69,6 +85,11 @@ python3 make_icons.py
 - **General-purpose** — tool names, schemas, and behavior are all discovered at
   runtime; the extension knows nothing site-specific.
 - **Chrome flag required** — WebMCP is still behind a flag (see Install).
+- **`activeTab` by default, not `<all_urls>`** — out of the box the extension only
+  touches a page when you click its toolbar icon; it has no standing access to your
+  browsing. Trade-off: a navigated page needs another click to re-scan. Flip on
+  **"Scan pages automatically"** (optional `<all_urls>` grant) to get auto-scan on every
+  page back.
 
 ## Verified
 
