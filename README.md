@@ -5,14 +5,6 @@ tools a page registers and lets you drive them from a Gemini-powered chat in the
 panel. Point it at any WebMCP-enabled site; it reads whatever tools that page exposes —
 nothing here is hard-coded to one site.
 
-> **Source of truth — develop here.** This copy under `webmcp-agent/` in the private
-> `ugly-tool/sirocco-gallery` dev repo is the **development source of truth**; all
-> extension work (including v2) happens here. The public repo
-> **[`github.com/sirocco-gallery/webmcp-agent`](https://github.com/sirocco-gallery/webmcp-agent)**
-> is a **distribution mirror** — released builds are uploaded there manually from this
-> repo; no changes are made directly in the public repo. It is self-contained — no
-> sirocco code is imported, and sirocco imports nothing from it.
-
 ## How it works
 
 ```
