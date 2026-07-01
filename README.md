@@ -2,8 +2,8 @@
 
 Refraktor is a general-purpose Chrome extension that discovers the [WebMCP](https://github.com/webmachinelearning/webmcp)
 tools a page registers and lets you drive them from a Gemini-powered chat in the side
-panel. Point it at any WebMCP-enabled site; it reads whatever tools that page exposes —
-nothing here is hard-coded to one site. 
+panel. Point it at any WebMCP-enabled site; it reads whatever tools that page exposes.
+There is nothing hard-coded to one site. 
 
 [Refraktor](https://chromewebstore.google.com/detail/refraktor/nkafbaaanaamfjdljndmieichdgkhgii) is available via the Chrome Web Store.
 
@@ -51,7 +51,5 @@ Across two independent providers in Chrome:
   carrying a `confirmationId` from one tool's result into the next, and parsing a
   name/email from conversational input.
 
-Confirms the schema/arg-key fixes, non-standard (bare-object) result handling, and
-cross-tool memory generalize beyond sirocco.
 
 
