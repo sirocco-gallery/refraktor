@@ -5,7 +5,7 @@ tools a page registers and lets you drive them from a Gemini-powered chat in the
 panel. Point it at any WebMCP-enabled site; it reads whatever tools that page exposes —
 nothing here is hard-coded to one site. 
 
-Refraktor is available in the Chrome web store: [Refraktor](https://chromewebstore.google.com/detail/refraktor/nkafbaaanaamfjdljndmieichdgkhgii)
+[Refraktor](https://chromewebstore.google.com/detail/refraktor/nkafbaaanaamfjdljndmieichdgkhgii) is available via the Chrome Web Store.
 
 ## How it works
 
