@@ -15,31 +15,6 @@ page (MAIN world)        extension
   reads modelContext           (isolated relay)                (message hub)      (chat + Gemini loop)
 ```
 
-- **bridge.js** runs in the page's JS context and reads the WebMCP consumer surface.
-  It feature-detects across surfaces so it's **flag-agnostic**:
-  - `document.modelContext.getTools()` / `executeTool()` — production imperative API
-  - `navigator.modelContextTesting.listTools()` / `executeTool()` — testing variant
-    (what the Model Context Inspector uses)
-  - `navigator.modelContext` — older fallback
-  It **parses `inputSchema`** (the surfaces return it as a JSON string) so tool
-  parameters actually reach the model. Tool results come back as
-  `{ content: [{ type: "text", text }] }`.
-- **content.js** is the isolated-world relay (it has `chrome.*`; the bridge doesn't).
-- **background.js** is the message hub: per-tab tool cache, badge count, panel routing.
-  It also **injects** `content.js` + `bridge.js` on demand — only into the tab whose
-  toolbar icon you click (which grants `activeTab` for that tab). There are no static
-  content scripts and no `<all_urls>` host permission by default; the extension can only
-  reach a page you explicitly point it at.
-- **Automatic scanning (opt-in).** The panel offers a *"Scan pages automatically"*
-  control. It requests the **optional** `<all_urls>` host permission at runtime (no
-  install-time warning); once granted, the SW registers dynamic content scripts on every
-  page so tools appear automatically — the original always-on behaviour, now user-granted
-  and revocable from the same toggle.
-- **sidepanel.js** runs the autonomous loop (max 8 tool calls/turn) against Gemini:
-  it keeps conversation history across messages (so follow-ups have context),
-  reconciles model-invented argument keys against each tool's schema (e.g. `css`→`code`),
-  executes each tool on the page, and feeds the result back.
-
 
 ## Try it (against sirocco.gallery)
 
