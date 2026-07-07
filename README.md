@@ -52,7 +52,7 @@ Across two independent providers in Chrome:
   name/email from conversational input.
 
 ## Deployment and Infrastructure
-  [![Deployed with Vercel](https://vercel.com)](https://sirocco-gallery.vercel.app/)
+[Deployed with Vercel](https://sirocco-gallery.vercel.app/)
   
   This repo contains an end-to-end WebMCP ecosystem - both a provider surface and a consumer extension.
 
