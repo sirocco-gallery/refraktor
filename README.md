@@ -56,11 +56,11 @@ Across two independent providers in Chrome:
   
   This repo contains an end-to-end WebMCP ecosystem - both a provider surface and a consumer extension.
 
-  # The Backend Provider surface (sirocco.gallery):
+  ## The Backend Provider surface (sirocco.gallery):
   sirocco.gallery is a live WebMCP provider site that exposes five callable tools. It leverages Vercel's capabilities and serverless infrastructure to handle
   the stateless, bursty nature of incoming tool calls during the Google Chrome WebMCP origin trial.
 
-  # The Client Consumer (Chrome web store extension: Refraktor):
+  ## The Client Consumer (Chrome web store extension: Refraktor):
   A general browser consumer extension built with design conformance awareness. It runs locally in the browser to discover and interact directly with the
   Vercel hosted provider surface, demonstrating how serverless architecture can seamlessly power client side AI protocal interactions. 
 
