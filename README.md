@@ -51,7 +51,7 @@ Across two independent providers in Chrome:
   carrying a `confirmationId` from one tool's result into the next, and parsing a
   name/email from conversational input.
 
-  ## Deployment and Infrastructure
+## Deployment and Infrastructure
   [![Deployed with Vercel](https://vercel.com)](https://sirocco-gallery.vercel.app/)
   
   This repo contains an end-to-end WebMCP ecosystem - both a provider surface and a consumer extension.
