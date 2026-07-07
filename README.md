@@ -54,8 +54,15 @@ Across two independent providers in Chrome:
   ## Deployment and Infrastructure
   [![Deployed with Vercel](https://vercel.com)](https://sirocco-gallery.vercel.app/)
   
-  The sirocco.gallery WebMCP provider surface is optimized for serverless architeture and deployed globally via Vercel. It leverages Vercel's capabilities to
-  instantly stream responses for its five callable tools during the Google Chrome Canary WebMCP origin trial. 
+  This repo contains an end-to-end WebMCP ecosystem - both a provider surface and a consumer extension.
+
+  # The Backend Provider surface (sirocco.gallery):
+  sirocco.gallery is a live WebMCP provider site that exposes five callable tools. It leverages Vercel's capabilities and serverless infrastructure to handle
+  the stateless, bursty nature of incoming tool calls during the Google Chrome WebMCP origin trial.
+
+  # The Client Consumer (Chrome web store extension: Refraktor):
+  A general browser consumer extension built with design conformance awareness. It runs locally in the browser to discover and interact directly with the
+  Vercel hosted provider surface, demonstrating how serverless architecture can seamlessly power client side AI protocal interactions. 
 
 
   [A Ziola Project](https://www.ziola.dev/index.html) 
