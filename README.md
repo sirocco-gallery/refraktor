@@ -62,7 +62,7 @@ Across two independent providers in Chrome:
 
   ## The Client Consumer (Chrome web store extension: Refraktor):
   A general browser consumer extension built with design conformance awareness. It runs locally in the browser to discover and interact directly with the
-  Vercel hosted provider surface, demonstrating how serverless architecture can seamlessly power client side AI protocal interactions. 
+  Vercel hosted provider surface, demonstrating how serverless architecture can seamlessly power client side AI protocol interactions. 
 
 
   [A Ziola Project](https://www.ziola.dev/index.html) 
