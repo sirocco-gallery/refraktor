@@ -51,7 +51,13 @@ Across two independent providers in Chrome:
   carrying a `confirmationId` from one tool's result into the next, and parsing a
   name/email from conversational input.
 
+  ## Deployment and Infrastructure
+  [![Deployed with Vercel](https://vercel.com)](https://sirocco-gallery.vercel.app/)
+  
+  The sirocco.gallery WebMCP provider surface is optimized for serverless architeture and deployed globally via Vercel. It leverages Vercel's capabilities to
+  instantly stream responses for its five callable tools during the Google Chrome Canary WebMCP origin trial. 
 
-[A Ziola Project](https://www.ziola.dev/index.html)
+
+  [A Ziola Project](https://www.ziola.dev/index.html) 
 
 
